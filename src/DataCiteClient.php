@@ -1,5 +1,4 @@
 <?php
-namespace MinhD;
 
 
 /**
@@ -61,7 +60,16 @@ class DataCiteClient
         return $this->hasError() ? false : true;
     }
 
-    /**
+	public function updateLandingPageURL($doiId, $doiUrl)
+	{
+		// update URL
+		$this->request($this->dataciteUrl . 'doi/', "doi=" . $doiId . "\nurl=" . $doiUrl);
+
+		return $this->hasError() ? false : true;
+	}
+
+
+	/**
      * Update XML
      * @param bool|false $xmlBody
      * @return mixed
@@ -149,10 +157,10 @@ class DataCiteClient
 
     public function getResponse()
     {
-        return [
+        return array(
             'errors' => $this->getErrors(),
             'messages' => $this->getMessages()
-        ];
+        );
     }
 
     /**
